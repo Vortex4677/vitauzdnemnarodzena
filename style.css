@@ -1,36 +1,26 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   font-family: Arial, sans-serif;
 }
 
-/* екран */
-.screen {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* конверт */
+/* КОНВЕРТ = ВЕСЬ ЕКРАН */
 .envelope {
-  width: 90vw;
-  max-width: 400px;
-  height: 260px;
-  background: white;
-  border-radius: 15px;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   position: relative;
   cursor: pointer;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* кришка */
+/* кришка конверта */
 .flap {
   position: absolute;
   top: 0;
@@ -38,24 +28,25 @@ body {
   width: 100%;
   height: 100%;
   background: #e74c3c;
-  clip-path: polygon(0 0, 100% 0, 50% 55%);
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
   transform-origin: top;
-  transition: 1s;
+  transition: transform 1s ease;
 }
 
-/* лист */
+/* лист (ПОВНІСТЮ СХОВАНИЙ) */
 .letter {
   position: absolute;
-  top: 20px;
+  bottom: -100%;
   left: 50%;
-  transform: translateX(-50%) translateY(100px);
+  transform: translateX(-50%);
   width: 90%;
+  max-width: 420px;
   background: white;
-  padding: 15px;
-  border-radius: 12px;
+  border-radius: 16px;
+  padding: 16px;
   text-align: center;
   opacity: 0;
-  transition: 1s;
+  transition: all 1s ease;
 }
 
 .photo {
@@ -64,26 +55,26 @@ body {
   margin-bottom: 10px;
 }
 
-/* відкритий стан */
+/* ВІДКРИТИЙ СТАН */
 .envelope.open .flap {
   transform: rotateX(180deg);
 }
 
 .envelope.open .letter {
-  transform: translateX(-50%) translateY(-200px);
+  bottom: 10%;
   opacity: 1;
 }
 
 /* ❤️ серця */
 .heart {
   position: absolute;
-  font-size: 20px;
+  font-size: 22px;
   animation: fly 5s linear forwards;
 }
 
 @keyframes fly {
   from {
-    transform: translateY(100vh);
+    transform: translateY(110vh);
     opacity: 1;
   }
   to {
