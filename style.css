@@ -1,82 +1,93 @@
 body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* екран */
+.screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* конверт */
+.envelope {
+  width: 90vw;
+  max-width: 400px;
+  height: 260px;
+  background: white;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* кришка */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e74c3c;
+  clip-path: polygon(0 0, 100% 0, 50% 55%);
+  transform-origin: top;
+  transition: 1s;
+}
+
+/* лист */
+.letter {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  width: 90%;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  opacity: 0;
+  transition: 1s;
+}
+
+.photo {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* відкритий стан */
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .letter {
+  transform: translateX(-50%) translateY(-200px);
+  opacity: 1;
+}
+
+/* ❤️ серця */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: fly 5s linear forwards;
+}
+
+@keyframes fly {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
   }
-  
-  .container {
-    position: relative;
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
   }
-  
-  .envelope {
-    width: 320px;
-    height: 220px;
-    background: white;
-    cursor: pointer;
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  }
-  
-  .envelope::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-left: 160px solid transparent;
-    border-right: 160px solid transparent;
-    border-top: 110px solid #e74c3c;
-    transition: 0.8s;
-    transform-origin: top;
-  }
-  
-  .envelope.open::before {
-    transform: rotateX(180deg);
-  }
-  
-  .letter {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 300px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    transform: translateY(120%);
-    transition: 0.8s;
-  }
-  
-  .envelope.open .letter {
-    transform: translateY(-120px);
-  }
-  
-  .photo {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  
-  /* ❤️ Серця */
-  .heart {
-    position: absolute;
-    color: red;
-    font-size: 20px;
-    animation: float 5s linear infinite;
-  }
-  
-  @keyframes float {
-    from {
-      transform: translateY(100vh);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-10vh);
-      opacity: 0;
-    }
-  }
+}
